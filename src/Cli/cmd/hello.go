@@ -1,6 +1,7 @@
 /*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
+Hello world command
 
+Copyright © 2024 NAME HERE <EMAIL ADDRESS>
 */
 package cmd
 
