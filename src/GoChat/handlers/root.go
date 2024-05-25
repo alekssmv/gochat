@@ -5,6 +5,5 @@ import (
 )
 
 func HandleRoot(w http.ResponseWriter, r *http.Request) {
-
-	http.ServeFile(w, r, "front/index.html")
+	http.Redirect(w, r, "/login", http.StatusFound)
 }
