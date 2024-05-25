@@ -2,9 +2,9 @@ FROM golang:latest
 
 WORKDIR /app
 
-COPY . .
+COPY /src/GoChat /app
 
-RUN go build -o myapp src/main.go
+RUN go build -o myapp
 
 EXPOSE 8080
 

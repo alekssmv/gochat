@@ -24,6 +24,6 @@ services:
       MYSQL_USER: alex
       MYSQL_PASSWORD: root
     ports:
-      - 3307:3307
+      - 3307:3306
     volumes:
       - ./data:/var/lib/mysql
