@@ -4,7 +4,7 @@ import (
 	"net/http"
 )
 
-// Показывает странуцу логина
+// Показывает странуцу регистрации
 func HandleLogin(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "front/login.html")
 }
