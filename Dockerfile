@@ -2,7 +2,7 @@ FROM golang:latest
 
 WORKDIR /app
 
-COPY /src/GoChat /app
+COPY /src/App /app
 
 RUN go build -o myapp
 

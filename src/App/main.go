@@ -1,27 +1,46 @@
 package main
 
 import (
-	"net/http"
-	"time"
 	"database/sql"
-	_ "github.com/go-sql-driver/mysql"
+	"fmt"
+	"github.com/joho/godotenv"
+	_ "github.com/lib/pq"
+	"log"
+	"net/http"
+	"os"
 )
 
 func main() {
 
-	// connect to database
-	dsn := "alex@tcp(127.0.0.1:3306)/app_db"
-	db, err := sql.Open("mysql", dsn)
+	err := godotenv.Load("../../.env")
 	if err != nil {
-		panic(err)
+		log.Fatal("Error loading .env file")
 	}
-	db.SetConnMaxLifetime(time.Minute * 3)
-	db.SetMaxOpenConns(10)
-	db.SetMaxIdleConns(10)
+
+	dsn := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable",
+		os.Getenv("DATABASE_USER"),
+		os.Getenv("DATABASE_PASSWORD"),
+		os.Getenv("DATABASE_HOST"),
+		os.Getenv("DATABASE_PORT"),
+		os.Getenv("DATABASE_NAME"),
+	)
+
+	// Define the database connection string
+	db, err := sql.Open("postgres", dsn)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Ping the database to check the connection
+	err = db.Ping()
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println("Connected to the PostgreSQL database")
 
 	mux := http.NewServeMux()
-	// register routes
+	// Register routes
 	RegisterRoutes(mux)
-	
+
 	http.ListenAndServe(":8080", mux)
 }

@@ -15,15 +15,14 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
     
-  mysql:
-    image: mysql:latest
+  db:
+    image: postgres
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: app_db
-      MYSQL_USER: alex
-      MYSQL_PASSWORD: root
-    ports:
-      - 3307:3306
+      POSTGRES_USER: alex
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: db
     volumes:
-      - ./data:/var/lib/mysql
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - 5433:5432
