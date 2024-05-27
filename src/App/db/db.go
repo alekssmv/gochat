@@ -9,7 +9,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
-// Return db or error
+// Return db connection or error
 func Connect() (*sql.DB, error) {
 
 	// Load .env file

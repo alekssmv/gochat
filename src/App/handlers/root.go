@@ -1,10 +1,13 @@
 package handlers
 
 import (
+	"fmt"
 	"net/http"
 )
 
-// Корневая страница, редирект на логин страницу
+// Корневая страница
 func HandleRoot(w http.ResponseWriter, r *http.Request) {
-	http.Redirect(w, r, "/login", http.StatusFound)
+	fmt.Println("HandleRoot")
+
+	http.FileServer(http.Dir("frontend/dist")).ServeHTTP(w, r)
 }

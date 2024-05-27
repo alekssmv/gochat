@@ -2,10 +2,10 @@ FROM golang:latest
 
 WORKDIR /app
 
-COPY /src/App /app
+COPY . .
 
-RUN go build -o myapp
+RUN cd src/App && go build -o myapp
 
 EXPOSE 8080
 
-CMD ["./myapp"]
+CMD ["./src/App/myapp"]
