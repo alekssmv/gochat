@@ -19,9 +19,9 @@ services:
     image: postgres
     restart: always
     environment:
-      POSTGRES_USER: alex
-      POSTGRES_PASSWORD: pass
-      POSTGRES_DB: db
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
     volumes:
       - ./data:/var/lib/postgresql/data
     ports:
