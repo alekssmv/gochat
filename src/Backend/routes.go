@@ -16,6 +16,7 @@ func RegisterRoutes(mux *http.ServeMux, fs http.Handler) {
 	})
 
 	mux.HandleFunc("/", handlers.HandleRoot(fs))
+	
 	// Frontend маршруты
 	mux.Handle("/register/", http.StripPrefix("/register", fs))
 	mux.Handle("/login/", http.StripPrefix("/login", fs))

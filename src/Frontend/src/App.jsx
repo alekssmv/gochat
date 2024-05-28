@@ -3,20 +3,26 @@ import {
     BrowserRouter as Router,
     Routes,
     Route,
-    Link    
+    Link
 } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Contacts from './pages/Contacts';
+import Message from './components/Message';
 
 function App() {
+
     return (
         <Router>
             <div>
                 <nav>
                     <ul>
-                        <li><Link to="/login">Login</Link></li>
-                        <li><Link to="/register">Register</Link></li>
+                        <li>
+                            <Link to="/login">Login</Link>
+                        </li>
+                        <li>
+                            <Link to="/register">Register</Link>
+                        </li>
                     </ul>
                 </nav>
                 <Routes>
