@@ -31,12 +31,12 @@ func HandleSubmitRegister(w http.ResponseWriter, r *http.Request) {
 	// Close the request body
 	defer r.Body.Close()
 
-	// Create a new user in the database
-	dbCon, _ := db.Connect()
+	db := db.Db
 
-	_, err := dbCon.Exec("INSERT INTO users (username, password) VALUES ($1, $2)", user.Username, user.Password)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+	// Create a new user in the database
+	result := db.Create(&user)
+	if result.Error != nil {
+		http.Error(w, result.Error.Error(), http.StatusInternalServerError)
 		return
 	}
 
