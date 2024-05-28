@@ -1,5 +1,5 @@
-<h1>Описание</h1>
-Backend код писал с нуля без использования шаблона, используя сторонние go-модули. Для создания CLI-команд выбрал библиотеку <a href="https://github.com/spf13/cobra">cobra-cli</a>. Frontend - React + Vite.
+<h1>Techstack</h1>
+Backend-код написан на go с нуля без использования шаблона, используя сторонние go-модули. Для создания CLI-команд выбрал go библиотеку <a href="https://github.com/spf13/cobra">cobra-cli</a>. Для Frontend выбрал React + Vite.
 
 <h1>Features</h1>
 <h2>Frontend</h2>
