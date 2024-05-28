@@ -8,7 +8,7 @@
 <p>*Добавление зарегистрированного пользователя в бд</p>
 <h2>Cli команды</h2>
 <p>*Запуск миграций в бд</p>
-<p>*Удаление даных из базы данных</p>
+<p>*Удаление данных из бд</p>
 <h1>Запуск проекта</h1>
 <div id="code-container" style="position: relative;">
   <pre><code id="code-snippet">sudo docker-compose up</code></pre>
