@@ -8,8 +8,9 @@ import (
 func main() {
 
 	mux := http.NewServeMux()
-	// Register routes
-	RegisterRoutes(mux)
+	fs := http.FileServer(http.Dir("dist"))
+	// Регистрация маршрутов
+	RegisterRoutes(mux, fs)
 
 	http.ListenAndServe(":8080", mux)
 }

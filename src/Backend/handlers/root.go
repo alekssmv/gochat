@@ -1,13 +1,17 @@
 package handlers
 
 import (
-	"fmt"
 	"net/http"
 )
 
 // Корневая страница
-func HandleRoot(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("HandleRoot")
-
-	http.FileServer(http.Dir("frontend/dist")).ServeHTTP(w, r)
+func HandleRoot(fs http.Handler) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path == "/" {
+			http.Redirect(w, r, "/login", http.StatusFound)
+			return
+		}
+		// Serve the static files for other routes
+		fs.ServeHTTP(w, r)
+	}
 }

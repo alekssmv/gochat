@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Contacts from './pages/Contacts';
 
 function App() {
     return (
@@ -14,13 +15,14 @@ function App() {
             <div>
                 <nav>
                     <ul>
-                        <li><Link to="/">Login</Link></li>
+                        <li><Link to="/login">Login</Link></li>
                         <li><Link to="/register">Register</Link></li>
                     </ul>
                 </nav>
                 <Routes>
-                    <Route path="/" element={<Login />} exact />
+                    <Route path="/login" element={<Login />} exact />
                     <Route path="/register" element={<Register />} />
+                    <Route path="/contacts" element={<Contacts />} />
                 </Routes>
             </div>
         </Router>
