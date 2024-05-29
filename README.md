@@ -17,7 +17,3 @@ Backend-код написан на Go с нуля без использован�
   <li>Запуск миграций в бд</li>
   <li>Удаление данных из бд</li>
 </ol>
-<h1>Запуск проекта</h1>
-<div id="code-container" style="position: relative;">
-  <pre><code id="code-snippet">sudo docker-compose up</code></pre>
-</div>
