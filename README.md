@@ -1,5 +1,5 @@
 <h2>Описание</h2>
-<p><em>Проект пока очень сырой</em></p>
+<p><em>Проект пока что очень сырой</em></p>
 Backend-код написан на Go с нуля без использования шаблона, но с использованием сторонних Go-модулей. Для создания CLI-команд выбрал Go-библиотеку <a href="https://github.com/spf13/cobra">cobra-cli</a>. Для Frontend выбрал React + Vite. База данных у проекта — PostgreSQL, веб-сервер — Nginx.
 <h2>Что сделано</h2>
 <h3><a href="https://github.com/Alekssmv/GoChat/tree/main/src/Frontend">Frontend:</a></h3>
