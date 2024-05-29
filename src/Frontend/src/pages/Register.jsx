@@ -17,7 +17,7 @@ const Register = () => {
 
     if (response.ok) {
       // Redirect to the contacts page
-      window.location.href = '/contacts';
+      window.location.href = '/contacts/';
       console.log('Form submitted successfully');
     } else {
 

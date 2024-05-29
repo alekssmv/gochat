@@ -22,3 +22,9 @@ h2 {
   display: grid;
   gap: 10px;
 }
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}

@@ -3,36 +3,51 @@ import {
     BrowserRouter as Router,
     Routes,
     Route,
-    Link
+    Link,
+    useLocation
 } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Contacts from './pages/Contacts';
-import Message from './components/Message';
 
 function App() {
+    const location = useLocation();
+
+    const links = [
+        { path: '/login/', label: 'Login' },
+        { path: '/register/', label: 'Register' }
+    ];
+
+    const filteredLinks = links.filter(link => link.path !== location.pathname);
 
     return (
-        <Router>
-            <div>
+        <div>
+            <div className="nav-links">
                 <nav>
-                    <ul>
-                        <li>
-                            <Link to="/login">Login</Link>
-                        </li>
-                        <li>
-                            <Link to="/register">Register</Link>
-                        </li>
+                    <ul className="nav-links">
+                        {filteredLinks.map(link => (
+                            <a key={link.path}>
+                                <Link to={link.path}>{link.label}</Link>
+                            </a>
+                        ))}
                     </ul>
                 </nav>
-                <Routes>
-                    <Route path="/login" element={<Login />} exact />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/contacts" element={<Contacts />} />
-                </Routes>
             </div>
+            <Routes>
+                <Route path="/login/" element={<Login />} exact />
+                <Route path="/register/" element={<Register />} />
+                <Route path="/contacts/" element={<Contacts />} />
+            </Routes>
+        </div>
+    );
+}
+
+function AppWrapper() {
+    return (
+        <Router>
+            <App />
         </Router>
     );
 }
 
-export default App;
+export default AppWrapper;

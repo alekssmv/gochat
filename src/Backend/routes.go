@@ -25,4 +25,6 @@ func RegisterRoutes(mux *http.ServeMux, fs http.Handler) {
 	// Api маршруты
 	apiPrefix := "/api"
 	mux.HandleFunc(apiPrefix+"/submit-register", handlers.HandleSubmitRegister)
+	mux.HandleFunc(apiPrefix+"/submit-login", handlers.HandleSubmitLogin)
 }
+ 
