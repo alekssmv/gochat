@@ -9,8 +9,8 @@ Backend-код написан на Go с нуля без использован�
 </ol>
 <h3><a href="https://github.com/Alekssmv/GoChat/tree/main/src/Backend">Backend:</a></h3>
 <ol>
-  <li>Внедрил gorm в проект</li>
-  <li>Добавление зарегистрированного пользователя в бд</li>
+  <li>Работа с бд посредством ORM <a href="https://github.com/go-gorm/gorm">gorm</a></li>
+  <li>Работа с сессиями</li>
 </ol>
 <h3><a href="https://github.com/Alekssmv/GoChat/tree/main/src/Cli">Cli команды:</a></h3>
 <ol>
