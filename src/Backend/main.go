@@ -4,9 +4,7 @@ import (
 	"net/http"
 	"gochat/db"
 )
-
 func main() {
-
 	mux := http.NewServeMux()
 	// Подключение к базе данных
 	db.Connect()

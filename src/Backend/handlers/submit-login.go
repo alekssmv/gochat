@@ -6,6 +6,7 @@ import (
 	"gochat/models"
 	"net/http"
 	"gochat/repositories"
+	"gochat/session"
 )
 
 // Создает пользователя в базе данных postgres
@@ -39,6 +40,14 @@ func HandleSubmitLogin(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Create session
+	session, _ := session.Store.Get(r, session.Name)
+    session.Values["authenticated"] = true
+    session.Values["username"] = user.Username
+    session.Save(r, w)
+
+	
+	// Write response
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte("User logged in"))
 }
