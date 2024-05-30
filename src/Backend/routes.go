@@ -15,8 +15,9 @@ func RegisterRoutes(mux *http.ServeMux, fs http.Handler) {
 	mux.HandleFunc("/", handlers.HandleRoot(fs))
 
 	// Frontend маршруты
-	mux.Handle("/register/", http.StripPrefix("/register", fs))
-	mux.Handle("/login/", http.StripPrefix("/login", fs))
+	mux.Handle("/register/", middlewares.NotAuthMiddleware(http.StripPrefix("/register", fs)))
+	mux.Handle("/login/", middlewares.NotAuthMiddleware(http.StripPrefix("/login", fs)))
+	
 	// Защищенные маршруты
 	mux.Handle("/contacts/", middlewares.AuthMiddleware(http.StripPrefix("/contacts", fs)))
 
@@ -24,6 +25,7 @@ func RegisterRoutes(mux *http.ServeMux, fs http.Handler) {
 	mux.HandleFunc("/submit-register", handlers.HandleSubmitRegister)
 	mux.HandleFunc("/submit-login", handlers.HandleSubmitLogin)
 	mux.HandleFunc("/logout", handlers.HandleLogout)
+	mux.HandleFunc("/username", handlers.HandleUsername)
 
 	// Hello world маршрут, для теста
 	mux.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {

@@ -10,10 +10,7 @@ func HandleLogout(w http.ResponseWriter, r *http.Request) {
 
 	session, _ := session.Store.Get(r, session.SessionName)
 
-	// Set user as logged out
-	session.Values["authenticated"] = false
-
-	// Clear cache
+	// Delete session
 	session.Options.MaxAge = -1
 
 	// Save session
