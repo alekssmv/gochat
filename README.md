@@ -22,7 +22,7 @@
 <h3><a href="https://github.com/alekssmv/gochat/tree/main/src/Cli">Cli команды:</a></h3>
 <ol>
   <li>Запуск миграций в бд.</li>
-  <li>Удаление данных из бд.</li>
+  <li>Удаление всех данных из бд.</li>
 </ol>
 <h2>Запуск проекта</h2>
 <code>Пока нельзя</code>
