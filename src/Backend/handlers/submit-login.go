@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	_ "github.com/davecgh/go-spew/spew"
 	"gochat/models"
-	"net/http"
 	"gochat/repositories"
+	"net/http"
 	"gochat/session"
 )
 
@@ -41,12 +41,15 @@ func HandleSubmitLogin(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Create session
-	session, _ := session.Store.Get(r, session.Name)
-    session.Values["authenticated"] = true
-    session.Values["username"] = user.Username
-    session.Save(r, w)
+	session, _ := session.Store.Get(r, session.SessionName)
 
-	
+	// Set session values
+	session.Values["authenticated"] = true
+	session.Values["username"] = user.Username
+
+	// Save session
+	session.Save(r, w)
+
 	// Write response
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte("User logged in"))

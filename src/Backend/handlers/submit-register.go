@@ -35,11 +35,16 @@ func HandleSubmitRegister(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Create session
-	session, _ := session.Store.Get(r, session.Name)
+	session, _ := session.Store.Get(r, session.SessionName)
+
+	// Set session values
 	session.Values["authenticated"] = true
 	session.Values["username"] = user.Username
+
+	// Save session
 	session.Save(r, w)
 
-	w.WriteHeader(http.StatusCreated)
-	w.Write([]byte("User created"))
+	// Write response
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte("User logged in"))
 }
