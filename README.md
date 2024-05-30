@@ -14,7 +14,6 @@
 <h3><a href="https://github.com/alekssmv/gochat/tree/main/src/Backend">Backend:</a></h3>
 <ol>
   <li>Работа с БД посредством ORM <a href="https://github.com/go-gorm/gorm">gorm</a>.</li>
-  <li>Работа с сессиями.</li>
   <li>Авторизация.</li>
   <li>Регистрация.</li>
   <li>Сохранение новых пользователей в БД.</li>
