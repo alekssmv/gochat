@@ -4,7 +4,7 @@ const Logout = () => {
 
     const handleLogout = async () => {
 
-        // Call the logout API
+        // Call the logout endpoint
         await fetch('/logout', {
             method: 'POST',
             credentials: 'include'
@@ -14,7 +14,7 @@ const Logout = () => {
         localStorage.clear();
         sessionStorage.clear();
 
-        // Go to root
+        // Go to root page
         window.location.href = '/';
     };
 

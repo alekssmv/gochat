@@ -9,9 +9,11 @@ import {
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Contacts from './pages/Contacts';
-import Logout from './elements/buttons/Logout'; // Correct the import path if needed
+import Logout from './elements/buttons/Logout';
+import UsernameDisplay from './elements/buttons/UsernameDisplay';
 
 function App() {
+
     const location = useLocation();
     const [loggedIn, setLoggedIn] = useState(false);
 
@@ -42,6 +44,7 @@ function App() {
                         {loggedIn && (
                             <div>
                                 <Logout />
+                                <UsernameDisplay />
                             </div>
                         )}
 

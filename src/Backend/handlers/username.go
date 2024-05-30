@@ -4,6 +4,7 @@ import (
 	_"github.com/davecgh/go-spew/spew"
 	"net/http"
 	"gochat/session"
+	"encoding/json"
 )
 
 // Получение имени пользователя
@@ -29,7 +30,16 @@ func HandleUsername(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Write response
+	// Write Json response
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(username.(string)))
+	jsonResponse, err := json.Marshal(map[string]string{
+		"username": username.(string),
+	})
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte(err.Error()))
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(jsonResponse)
 }

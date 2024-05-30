@@ -1,24 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const UsernameDisplay = () => {
+  // State to hold the username
+  const [username, setUsername] = useState('');
 
-  const handleUsernameDisplay = async () => {
+  // Effect to fetch the username once the component is mounted
+  useEffect(() => {
+    const fetchUsername = async () => {
+      try {
+        console.log('Fetching username...');
+        const response = await fetch('/username', {
+          method: 'GET',
+          credentials: 'include',
+        });
+        const data = await response.json();
+        setUsername(data.username);
+      } catch (error) {
+        console.error('Error fetching username:', error);
+      }
+    };
 
-    // Define username
-    let username;
+    fetchUsername();
+  }, []); // Empty dependency array ensures this effect runs only once
 
-    // Get the username from /username
-    await fetch('/user', {
-      method: 'POST',
-      credentials: 'include'
-    }).then(res => res.json()).then(data => username = data.username);
-
-
-  };
-
-  return (
-    <p>Username {handleUsernameDisplay}</p>
-  );
+  return <p>Username: {username}</p>;
 };
 
-export default Logout;
+export default UsernameDisplay;
