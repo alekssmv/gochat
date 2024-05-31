@@ -9,6 +9,7 @@
   <li>Динамическое отображение ссылок в навигации.</li>
   <li>Динамическое отображение кнопки "logout".</li>
   <li>Сброс кэша "фронта" после нажатия на "logout".</li>
+  <li>Отображение имени авторизованного пользователя.</li>
 </ol>
 <h3><a href="https://github.com/alekssmv/gochat/tree/main/src/Backend">Backend:</a></h3>
 <ol>
