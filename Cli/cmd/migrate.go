@@ -25,7 +25,7 @@ to quickly create a Cobra application.`,
 		fmt.Println("migrate called")
 
 		// load env
-		err := godotenv.Load("../../.env")
+		err := godotenv.Load("../.env")
 		if err != nil {
 			log.Fatal("Error loading .env file")
 		}
