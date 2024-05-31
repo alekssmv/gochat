@@ -1,16 +1,19 @@
 package main
 
 import (
-	"net/http"
 	"gochat/db"
+	"net/http"
+	"time"
 )
+
 func main() {
+
 	mux := http.NewServeMux()
 
 	// Подключение к базе данных
-	db.Connect()
+	db.Connect(5, 5*time.Second)
 
-	// Serve static files react app
+	// Serve static files from the "dist" folder
 	fs := http.FileServer(http.Dir("dist"))
 
 	// Регистрация маршрутов

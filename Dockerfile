@@ -25,6 +25,8 @@ COPY --from=backend /app/gochat /app/gochat
 
 COPY --from=frontend /app/dist /app/dist
 
+COPY .env /.env
+
 EXPOSE 8080
 
 # Run the binary
