@@ -18,7 +18,7 @@
   <li>Регистрация.</li>
   <li>Сохранение новых пользователей в БД.</li>
 </ol>
-<h3><a href="https://github.com/alekssmv/gochat/tree/main/src/Cli">Cli команды:</a></h3>
+<h3><a href="https://github.com/alekssmv/gochat/tree/main/Cli">Cli команды:</a></h3>
 <ol>
   <li>Запуск миграций в бд.</li>
   <li>Удаление всех данных из бд.</li>
