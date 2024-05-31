@@ -23,6 +23,10 @@
   <li>Запуск миграций в бд.</li>
   <li>Удаление всех данных из бд.</li>
 </ol>
+<h3>Тестовая документация:</a></h3>
+<ol>
+  <li><a href="https://docs.google.com/spreadsheets/d/1j8t9UMbRxWT9KtvN-fLcNyhz7qGfPgp8y7wH0q3xWBM/edit?usp=sharing">Чек лист</a></li>
+</ol>
 <h2>Запуск проекта на Ubuntu</h2>
 <p>Для запуска проекта нужен docker-compose.</p>
 
