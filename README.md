@@ -23,5 +23,10 @@
   <li>Запуск миграций в бд.</li>
   <li>Удаление всех данных из бд.</li>
 </ol>
-<h2>Запуск проекта</h2>
-<code>Пока нельзя</code>
+<h2>Запуск проекта на Ubuntu</h2>
+<p>Для запуска проекта нужен docker-compose.</p>
+
+```bash
+sudo git clone https://github.com/alekssmv/gochat && cd gochat && cp .env.example .env && sudo docker-compose up --build
+```
+<p>Также посмотреть как работает проект можно <a href=http://194.35.13.18:81/>здесь</a>.</p>
