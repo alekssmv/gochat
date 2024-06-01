@@ -7,13 +7,17 @@ import (
 	"gochat/repositories"
 	"net/http"
 	"gochat/session"
+	"gochat/services"
 )
 
 // Создает пользователя в базе данных postgres
 func HandleSubmitLogin(w http.ResponseWriter, r *http.Request) {
 
+	jsonError := services.JsonErrorResponse
+	jsonSuccess := services.JsonSuccessResponse
+
 	if r.Method != http.MethodPost {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		jsonError(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
 
@@ -23,20 +27,20 @@ func HandleSubmitLogin(w http.ResponseWriter, r *http.Request) {
 	// Decode JSON body into models.User struct
 	var user models.User
 	if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
+		jsonError(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
 	// Check if user exists in the database
 	newUser, err := repositories.GetUserByUsername(user.Username)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
+		jsonError(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
 	// Check if passwords match
 	if newUser.Password != user.Password {
-		http.Error(w, "Incorrect password", http.StatusBadRequest)
+		jsonError(w, "Incorrect password", http.StatusBadRequest)
 		return
 	}
 
@@ -50,7 +54,6 @@ func HandleSubmitLogin(w http.ResponseWriter, r *http.Request) {
 	// Save session
 	session.Save(r, w)
 
-	// Write response
-	w.WriteHeader(http.StatusOK)
-	w.Write([]byte("User logged in"))
+	// response
+	jsonSuccess(w, "Login successful", http.StatusOK)
 }

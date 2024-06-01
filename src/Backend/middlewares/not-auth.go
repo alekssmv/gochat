@@ -12,7 +12,7 @@ func NotAuthMiddleware(next http.Handler) http.Handler {
 
 		// Редирект на /contacts если пользователь уже авторизован
 		if session.Values["authenticated"] == true {
-			http.Redirect(w, r, "/contacts", http.StatusFound)
+			http.Redirect(w, r, "/contacts/", http.StatusFound)
 			return
         }
         next.ServeHTTP(w, r)

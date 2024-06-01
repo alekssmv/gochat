@@ -3,10 +3,13 @@ package handlers
 import (
 	"gochat/session"
 	"net/http"
+	"gochat/services"
 )
 
 // Logout
 func HandleLogout(w http.ResponseWriter, r *http.Request) {
+
+	jsonSuccess := services.JsonSuccessResponse
 
 	session, _ := session.Store.Get(r, session.SessionName)
 
@@ -16,7 +19,6 @@ func HandleLogout(w http.ResponseWriter, r *http.Request) {
 	// Save session
 	session.Save(r, w)
 
-	// Write response
-	w.WriteHeader(http.StatusOK)
-	w.Write([]byte("User logged out"))
+	// Write json response
+	jsonSuccess(w, "Logout successful", http.StatusOK)
 }

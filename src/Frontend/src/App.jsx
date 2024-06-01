@@ -4,24 +4,27 @@ import {
     Routes,
     Route,
     Link,
-    useLocation
+    useLocation,
+    Navigate,
 } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Contacts from './pages/Contacts';
 import Logout from './elements/buttons/Logout';
-import UsernameDisplay from './elements/buttons/UsernameDisplay';
+import UsernameDisplay from './elements/UsernameDisplay';
 
 function App() {
 
     const location = useLocation();
     const [loggedIn, setLoggedIn] = useState(false);
+    const [message, setMessage] = useState('');
 
     useEffect(() => {
 
         // Check if the cookie is set
         const cookie = document.cookie.split(';').find(c => c.trim().startsWith('gochat-session='));
         if (cookie) {
+            // if cookie is set, set loggedIn to true
             setLoggedIn(true);
         }
     }, []);
@@ -36,6 +39,7 @@ function App() {
 
     return (
         <div>
+
             <div className="nav-links">
                 <nav>
                     <ul className="nav-links">
@@ -62,11 +66,19 @@ function App() {
                     </ul>
                 </nav>
             </div>
+
+            <div className="message">
+                {message}
+            </div>
+
             <Routes>
-                <Route path="/login/" element={<Login />} exact />
-                <Route path="/register/" element={<Register />} />
-                <Route path="/contacts/" element={<Contacts />} />
-                <Route path="/logout" element={<Logout />} />
+                {/* Public routes */}
+                <Route path="/login/" element={loggedIn ? <Navigate to="/contacts/" /> : <Login setMessage={setMessage} />} />
+                <Route path="/register/" element={loggedIn ? <Navigate to="/contacts/" /> : <Register setMessage={setMessage} />} />
+
+                {/* Protected routes */}
+                <Route path="/contacts/" element={loggedIn ? <Contacts /> : <Navigate to="/login/" />} />
+                <Route path="/logout/" element={loggedIn ? <Logout /> : <Navigate to="/login/" />} />
             </Routes>
         </div>
     );

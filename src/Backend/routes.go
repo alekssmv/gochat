@@ -2,10 +2,10 @@ package main
 
 import (
 	"gochat/handlers"
+	"gochat/middlewares"
 	"net/http"
 	_ "path/filepath"
 	_ "strings"
-	"gochat/middlewares"
 )
 
 // Регистрация маршрутов
@@ -17,7 +17,7 @@ func RegisterRoutes(mux *http.ServeMux, fs http.Handler) {
 	// Frontend маршруты
 	mux.Handle("/register/", middlewares.NotAuthMiddleware(http.StripPrefix("/register", fs)))
 	mux.Handle("/login/", middlewares.NotAuthMiddleware(http.StripPrefix("/login", fs)))
-	
+
 	// Защищенные маршруты
 	mux.Handle("/contacts/", middlewares.AuthMiddleware(http.StripPrefix("/contacts", fs)))
 
