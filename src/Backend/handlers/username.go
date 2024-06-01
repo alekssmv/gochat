@@ -1,17 +1,20 @@
 package handlers
 
 import (
-	_"github.com/davecgh/go-spew/spew"
-	"net/http"
+	_ "github.com/davecgh/go-spew/spew"
+	"gochat/services"
 	"gochat/session"
-	"encoding/json"
+	"net/http"
 )
 
 // Получение имени пользователя
 func HandleUsername(w http.ResponseWriter, r *http.Request) {
 
+	jsonError := services.JsonErrorResponse
+	json := services.JsonResponse
+
 	if r.Method != http.MethodGet {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		jsonError(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
 
@@ -25,21 +28,10 @@ func HandleUsername(w http.ResponseWriter, r *http.Request) {
 	username := session.Values["username"]
 
 	if username == nil {
-		w.WriteHeader(http.StatusUnauthorized)
-		w.Write([]byte("Unauthorized"))
+		jsonError(w, "Unauthorized", http.StatusUnauthorized)
 		return
 	}
 
 	// Write Json response
-	w.WriteHeader(http.StatusOK)
-	jsonResponse, err := json.Marshal(map[string]string{
-		"username": username.(string),
-	})
-	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte(err.Error()))
-		return
-	}
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(jsonResponse)
+	json(w, map[string]string{"username": username.(string)}, http.StatusOK)
 }

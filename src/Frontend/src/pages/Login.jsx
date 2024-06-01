@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Login = () => {
+const Login = ({ setMessage }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -18,10 +18,10 @@ const Login = () => {
         if (response.ok) {
             // Redirect to the contacts page
             window.location.href = '/contacts/';
-            console.log('Form submitted successfully');
         } else {
-
-            console.error('Error submitting form');
+            // Display error message from response
+            const data = await response.json();
+            setMessage(data.error)
         }
     };
 

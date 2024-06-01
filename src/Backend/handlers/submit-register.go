@@ -7,13 +7,18 @@ import (
 	"gochat/repositories"
 	"gochat/session"
 	"net/http"
+	"gochat/services"
 )
 
 // Создает пользователя в базе данных postgres
 func HandleSubmitRegister(w http.ResponseWriter, r *http.Request) {
 
+	jsonError := services.JsonErrorResponse
+	jsonSuccess := services.JsonSuccessResponse
+
+
 	if r.Method != http.MethodPost {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		jsonError(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
 
@@ -23,14 +28,14 @@ func HandleSubmitRegister(w http.ResponseWriter, r *http.Request) {
 	// Decode JSON body into models.User struct
 	var user models.User
 	if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
+		jsonError(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
 	// Create the user in the database
 	err := repositories.CreateUser(&user)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
+		jsonError(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
@@ -44,7 +49,6 @@ func HandleSubmitRegister(w http.ResponseWriter, r *http.Request) {
 	// Save session
 	session.Save(r, w)
 
-	// Write response
-	w.WriteHeader(http.StatusOK)
-	w.Write([]byte("User logged in"))
+	// Write json response
+	jsonSuccess(w, "Registration successful", http.StatusOK)
 }
