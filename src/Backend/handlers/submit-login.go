@@ -2,12 +2,13 @@ package handlers
 
 import (
 	"encoding/json"
-	_ "github.com/davecgh/go-spew/spew"
 	"gochat/models"
 	"gochat/repositories"
-	"net/http"
-	"gochat/session"
 	"gochat/services"
+	"gochat/session"
+	"net/http"
+	_"github.com/davecgh/go-spew/spew"
+	"gochat/validators"
 )
 
 // Создает пользователя в базе данных postgres
@@ -16,6 +17,7 @@ func HandleSubmitLogin(w http.ResponseWriter, r *http.Request) {
 	jsonError := services.JsonErrorResponse
 	jsonSuccess := services.JsonSuccessResponse
 
+	// Check if method is POST
 	if r.Method != http.MethodPost {
 		jsonError(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
@@ -31,6 +33,13 @@ func HandleSubmitLogin(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Validate user
+	validateUser := validators.User{Username: user.Username, Password: user.Password}
+	if err := validateUser.Validate(); err != nil {
+		jsonError(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	
 	// Check if user exists in the database
 	newUser, err := repositories.GetUserByUsername(user.Username)
 	if err != nil {

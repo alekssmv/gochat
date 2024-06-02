@@ -73,8 +73,8 @@ function App() {
 
             <Routes>
                 {/* Public routes */}
-                <Route path="/login/" element={loggedIn ? <Navigate to="/contacts/" /> : <Login setMessage={setMessage} />} />
-                <Route path="/register/" element={loggedIn ? <Navigate to="/contacts/" /> : <Register setMessage={setMessage} />} />
+                <Route path="/login/" element={loggedIn ? <Navigate to="/contacts/" /> : <Login setMessage={setMessage} setLoggedIn={setLoggedIn} />} />
+                <Route path="/register/" element={loggedIn ? <Navigate to="/contacts/" /> : <Register setMessage={setMessage} setLoggedIn={setLoggedIn} />} />
 
                 {/* Protected routes */}
                 <Route path="/contacts/" element={loggedIn ? <Contacts /> : <Navigate to="/login/" />} />

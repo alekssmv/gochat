@@ -10,6 +10,12 @@ import (
 func HandleLogout(w http.ResponseWriter, r *http.Request) {
 
 	jsonSuccess := services.JsonSuccessResponse
+	jsonError := services.JsonErrorResponse
+
+	if r.Method != http.MethodGet {
+		jsonError(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
 
 	session, _ := session.Store.Get(r, session.SessionName)
 

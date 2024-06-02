@@ -6,7 +6,7 @@ const Logout = () => {
 
         // Call the logout endpoint
         await fetch('/logout', {
-            method: 'POST',
+            method: 'GET',
             credentials: 'include'
         });
 

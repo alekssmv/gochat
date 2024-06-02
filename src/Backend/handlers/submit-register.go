@@ -5,9 +5,10 @@ import (
 	_ "github.com/davecgh/go-spew/spew"
 	"gochat/models"
 	"gochat/repositories"
+	"gochat/services"
 	"gochat/session"
 	"net/http"
-	"gochat/services"
+	"gochat/validators"
 )
 
 // Создает пользователя в базе данных postgres
@@ -15,7 +16,6 @@ func HandleSubmitRegister(w http.ResponseWriter, r *http.Request) {
 
 	jsonError := services.JsonErrorResponse
 	jsonSuccess := services.JsonSuccessResponse
-
 
 	if r.Method != http.MethodPost {
 		jsonError(w, "Method not allowed", http.StatusMethodNotAllowed)
@@ -28,6 +28,13 @@ func HandleSubmitRegister(w http.ResponseWriter, r *http.Request) {
 	// Decode JSON body into models.User struct
 	var user models.User
 	if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
+		jsonError(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	// Validate user
+	validateUser := validators.User{Username: user.Username, Password: user.Password}
+	if err := validateUser.Validate(); err != nil {
 		jsonError(w, err.Error(), http.StatusBadRequest)
 		return
 	}

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Login = ({ setMessage }) => {
+const Login = ({ setMessage, setLoggedIn }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -16,8 +18,12 @@ const Login = ({ setMessage }) => {
         });
 
         if (response.ok) {
+            // set loggedIn to true
+            setLoggedIn(true);
             // Redirect to the contacts page
-            window.location.href = '/contacts/';
+            navigate('/contacts/');
+            // set message to success
+            setMessage('Login successful!');
         } else {
             // Display error message from response
             const data = await response.json();
