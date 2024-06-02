@@ -23,8 +23,12 @@
   <li>Запуск миграций в бд.</li>
   <li>Удаление всех данных из бд.</li>
 </ol>
-<h2>Запуск проекта на Ubuntu</h2>
-<p>Для запуска проекта нужен docker-compose.</p>
+<h3>Тестовая документация:</a></h3>
+<ol>
+  <li><a href="https://docs.google.com/spreadsheets/d/1j8t9UMbRxWT9KtvN-fLcNyhz7qGfPgp8y7wH0q3xWBM/edit?usp=sharing">Чек лист</a></li>
+</ol>
+<h2>Запуск проекта на Ubuntu 22.04</h2>
+<p>Для запуска проекта нужен docker-compose версии 1.29.2</p>
 
 ```bash
 sudo git clone https://github.com/alekssmv/gochat && cd gochat && cp .env.example .env && sudo docker-compose up --build
