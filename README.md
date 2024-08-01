@@ -10,5 +10,5 @@
 <p>Для запуска проекта нужен docker-compose.</p>
 
 ```bash
-sudo git clone https://github.com/alekssmv/gochat && cd gochat && cp .env.example .env && sudo docker-compose up --build
+sudo docker-compose up
 ```
