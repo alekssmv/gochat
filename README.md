@@ -3,11 +3,18 @@
 <h2>Технологии</h2>
 <li>Микро-сервисы: <a href="https://github.com/gin-gonic/gin">gin-gonic</a>.</li>
 <li>Фронтэнд: Vue + TypeScript.</li>
-<h2>TODO</h2>
-<h3>Frontend:</a></h3>
-<h3>Backend:</a></h3>
-<h2>Запуск проекта на Ubuntu</h2>
-<p>Для запуска проекта нужен docker-compose.</p>
+<h2>Что сделано</h2>
+<h3>Frontend:</h3>
+<ol>
+  <li>Реализована страница авторизации. (без Vue)</li>
+  <li>Реализована страница регистрации. (без Vue)</li>
+</ol>
+<h3>Backend:</h3>
+<ol>
+  <li>Реализован файловый сервис.</li>
+</ol>
+<h2>Запуск проекта на Ubuntu 22.04</h2>
+<p>Для запуска проекта нужен Docker(24.0.7), Docker-Compose(1.29.2) </p>
 
 ```bash
 sudo docker-compose up
